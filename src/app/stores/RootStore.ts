@@ -1,17 +1,12 @@
 
-import TodoStore  from './TodoStore'
+import TodoStore from './TodoStore'
 import UserStore  from './UserStore'
 
-class RootStore {
-  todoStore: TodoStore;
-  userStore: UserStore;
-  constructor() {
-    this.todoStore = new TodoStore(this);
-    this.userStore = new UserStore(this);
-  }
+
+const RootStore = {
+  TodoStore,
+  UserStore
 }
 
-export default new RootStore();
-
-
+export default RootStore
 

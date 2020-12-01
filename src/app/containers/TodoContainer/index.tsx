@@ -20,10 +20,10 @@ import { useStores } from '../../stores/Context';
 
 import { TODO_FILTER_LOCATION_HASH, TodoFilter } from 'app/constants';
 
-export const TodoContainer = observer(() => {
+
+const TodoContainer = observer(()=>{
   //use store
-  const { todoStore  } = useStores();
-  console.log("todoStore",todoStore.addTodo)
+  const { TodoStore:todoStore  } = useStores();
   const history = useHistory();
   const location = useLocation();
   const [filter, setFilter] = React.useState(TodoFilter.ALL);
@@ -39,7 +39,8 @@ export const TodoContainer = observer(() => {
     //console.log(Object.keys(TODO_FILTER_LOCATION_HASH))
   }, [location.hash, setFilter]);
 
- 
+  
+  console.log("todoStore",todoStore)
 
   // filter change callback
   const handleFilterChange = React.useCallback(
@@ -57,6 +58,8 @@ export const TodoContainer = observer(() => {
       : filter === TodoFilter.ACTIVE
       ? todoStore.activeTodos
       : todoStore.completedTodos;
+
+      console.log("itemsToDisplay",itemsToDisplay)
 
   return (
     <div className={style.normal}>
@@ -78,3 +81,5 @@ export const TodoContainer = observer(() => {
   );
 
 });
+
+export default TodoContainer

@@ -1,14 +1,12 @@
 import { ITodoItem } from '../models/TodoModel';
 import {  observable, makeAutoObservable } from 'mobx';
 
-class TodoStore {
+class UserStore {
     todos:ITodoItem[] = [];
-    rootStore: any;
-    constructor(rootStore){
+    constructor(){
         makeAutoObservable(this);
-        this.rootStore = rootStore;
     }
 }
 
 
-export default TodoStore; 
+export default new UserStore(); 

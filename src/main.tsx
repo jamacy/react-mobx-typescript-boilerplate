@@ -6,10 +6,11 @@ import { createBrowserHistory } from 'history';
 import { App } from 'app';
 import RootStore from './app/stores/RootStore';
 
+
 // prepare history
 const history = createBrowserHistory();
 //const { Provider } = StoreContext 
-console.log("store",RootStore)
+
 // render react DOM
 ReactDOM.render(
     <Provider {...RootStore}>
