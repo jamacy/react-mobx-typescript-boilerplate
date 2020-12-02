@@ -1,5 +1,5 @@
-import { TodoModel,ITodoItem } from '../models/TodoModel';
-import { action, computed, makeAutoObservable, observable} from 'mobx';
+import { TodoModel, ITodoItem } from '../models/TodoModel';
+import {  makeAutoObservable } from 'mobx';
 
 
 //import { useLocalStore } from 'mobx-react';
@@ -50,26 +50,24 @@ import { action, computed, makeAutoObservable, observable} from 'mobx';
 //2 使用类的方式
 class TodoStore {
 
-  todos:ITodoItem[] = []
-  constructor(){
+  todos: ITodoItem[] = []
+  constructor() {
     makeAutoObservable(this);
   }
 
-  get activeTodos():ITodoItem[]{
-    console.log("activeTodos",this)
+  get activeTodos(): ITodoItem[] {
+    
     return this.todos.filter((todo) => !todo.completed);
   }
-  get completedTodos():ITodoItem[]{
-    console.log("completedTodos",this)
+  get completedTodos(): ITodoItem[] {
     return this.todos.filter((todo) => todo.completed);
   }
-  
- addTodo (item: ITodoItem): void {
-    console.log("addTodo",this)
+
+  addTodo = (item: ITodoItem): void => {
     this.todos.push(new TodoModel(item.text, item.completed));
   }
 
-  editTodo = (id: number, data: ITodoItem): void =>{
+  editTodo = (id: number, data: ITodoItem): void => {
     this.todos = this.todos.map((todo) => {
       if (todo.id === id) {
         if (typeof data.completed == 'boolean') {
@@ -87,16 +85,16 @@ class TodoStore {
     this.todos = this.todos.filter((todo) => todo.id !== id);
   }
 
-  completeAll = ():void => {
+  completeAll = (): void => {
     this.todos = this.todos.map((todo) => ({ ...todo, completed: true }));
   }
 
-  clearCompleted = (): void =>{
+  clearCompleted = (): void => {
     this.todos = this.todos.filter((todo) => !todo.completed);
   }
 }
 
-  
+
 
 
 //3 使用装饰器创建

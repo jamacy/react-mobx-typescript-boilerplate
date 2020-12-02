@@ -7,17 +7,7 @@ import { useLocation, useHistory } from 'react-router';
 import { Header } from 'app/components/Header';
 import { Footer } from 'app/components/Footer';
 import { TodoList } from 'app/components/TodoList';
-
-//
-//import { TodoModel } from '../../models/TodoModel';
-// import { TodoModel } from '../../models/TodoModel';
-// import { useTodoStore } from 'app/stores/TodoStore';
-// //
-
 import { useStores } from '../../stores/Context';
-
-
-
 import { TODO_FILTER_LOCATION_HASH, TodoFilter } from 'app/constants';
 
 
@@ -40,7 +30,7 @@ const TodoContainer = observer(()=>{
   }, [location.hash, setFilter]);
 
   
-  console.log("todoStore",todoStore)
+  console.log("store",todoStore)
 
   // filter change callback
   const handleFilterChange = React.useCallback(
@@ -59,7 +49,6 @@ const TodoContainer = observer(()=>{
       ? todoStore.activeTodos
       : todoStore.completedTodos;
 
-      console.log("itemsToDisplay",itemsToDisplay)
 
   return (
     <div className={style.normal}>
